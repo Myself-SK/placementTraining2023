@@ -1,3 +1,4 @@
+// Prime number in Array
 #include<stdio.h>
 void main(){
 	int n;
