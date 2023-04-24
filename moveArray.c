@@ -1,5 +1,5 @@
 #include<stdio.h>
-void move(int a[],int* l,int* r){
+void move(int* l,int* r){
 	int temp;
 		while(l<r){
 		if(*l>0 && *r>0)
@@ -29,7 +29,7 @@ void main(){
 	int *l,*r;
 	l=a;
 	r=&a[n-1];
-	move(a,l,r);
+	move(l,r);
 	for(i=0;i<n;i++)
 	printf("%d ",a[i]);
 }
