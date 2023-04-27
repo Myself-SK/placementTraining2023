@@ -1,3 +1,4 @@
+//wap to print the middle element in a given linked list
 #include<iostream>
 using namespace std;
 class Node{
@@ -61,47 +62,25 @@ class LinkedList{
 			}
 		}
 	}
-	void reverse_list() {
-	    Node *prev = NULL;
-	    Node *current = head;
-	    Node *next = NULL;
-	
-	    while (current != NULL) {
-	        next = current->address;
-	        current->address = prev;
-	        prev = current;
-	        current = next;
-	    }
-	    head = prev;
-	}
-	
-	
-	void removeDuplicates()
-	{
-	 Node *prev = NULL,*current = head,*next = NULL,*dup=NULL, *temp=NULL;
-    int flag;
-    while (current != NULL && current->address != NULL) {
-    		current=head;
-    		prev=current;
-	        next = current->address;
-	        flag=0;
-	        while (next->address != NULL) {
-	            if (current->data == next->address->data) {
-	                dup = next->address;
-	                next->address = next->address->address;
-	                delete (dup);
-	                flag=1;
-	            } 
-	            else 
-	                next = next->address;
-	        }
-	        if(flag==1){
-	        	temp = current;
-	        	prev->address = current->address;
-	        	delete(temp);
-			}
-	       current = current->address;
-	   	}
+	int getLen()
+    {
+        int len = 0;
+        class Node* temp = head;
+        while (temp!=NULL) {
+            len++;
+            temp = temp->address;
+        }
+        return len;
+    }
+	void displayMiddle(){
+		if(head!=NULL){
+			int len = getLen();
+			class Node* temp = head;
+			int mid = len/2;
+			while(mid--)
+				temp = temp->address;
+			cout<<temp->data<<endl;
+		}
 	}
 };
 int main(){
@@ -111,7 +90,7 @@ int main(){
     {  
         cout<<"\nChoose one option from below ...\n";  
         cout<<"\n===============================================\n";  
-cout<<"\n1.Insert in begining\n2.Insert at last\n3.Remove Duplicate\n4.Reverse List\n8.display\n9.Exit\n";  
+cout<<"\n1.Insert in begining\n2.Insert at last\n3.display\n4.Display Middle\n9.Exit\n";  
         cout<<"\nEnter your choice?\n";         
         cin>>choice;  
         switch(choice)  
@@ -122,15 +101,12 @@ cout<<"\n1.Insert in begining\n2.Insert at last\n3.Remove Duplicate\n4.Reverse L
             case 2:  
             	l.lastInsert();         
             	break;  
-            case 3:
-            	l.removeDuplicates();
-            	break;
-            case 4:
-            	l.reverse_list();
-            	break;
-            case 8:  
+            case 3:  
 	            l.display();        
 	            break; 
+	        case 4:
+	        	l.displayMiddle();
+	        	break;
 			case 9:
 				return 0;
 				break; 
